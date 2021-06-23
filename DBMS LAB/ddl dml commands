@@ -1,0 +1,34 @@
+create database bus_reservation_system;
+USE bus_reservation_system;
+
+CREATE TABLE Bus (BusNo varchar (10) primary key, Source varchar(15), Destination varchar (15));
+insert into Bus values('TS01', 'Hyderabad', 'Eluru');
+insert into Bus values('TS02', 'Delhi', 'Hyderabad');
+insert into Bus values('TS03', 'Vijayawada', 'Hyderabad');
+insert into Bus values('TS04', 'Hyderabad', 'Bangalore');
+update Bus set Destination = "LB Nagar" where BusNo = 'TS02';
+alter TABLE Bus add Driv_name varchar(15);
+Select * from Bus;
+
+CREATE TABLE Passenger(PNo int primary key,PName varchar (15),PAge int ,PSex Char(6), p_seatnum int);
+insert into Passenger values(1201, 'Shizuka', 23, 'Female',1);
+insert into Passenger values(1202, 'Nobita', 24, 'Male',2);
+insert into Passenger values(1203, 'Elsa', 24, 'Female',3);
+insert into Passenger values(1204, 'Doremon', 67, 'Male',4);
+update Passenger set PName = 'Dorini' where PNo = 1203;
+alter table Passenger modify PName varchar(25);
+alter table Passenger drop p_seatnum;
+select * from Passenger;
+
+CREATE TABLE Ticket(Ticket_No int Primary Key,Journey_date Date,Age int, Sex char(6), Source Varchar(10),Arrival_time varchar(6),Destination Varchar(10), Dep_time varchar(6));
+insert into Ticket values(1, '2021-06-22', 37, 'F', 'HYD', '20:35', 'EE', '6:00');
+insert into Ticket values(2, '2021-06-25', 46, 'M', 'SEC', '21:35', 'VIZ', '9:45');
+update Ticket set Destination = 'Vijayawada' where Ticket_No = 1;
+delete from Ticket where Ticket_No = 1;
+select * from Ticket;
+
+CREATE TABLE Reservation(PNo int, foreign key(PNo) references passenger(PNo),Journey_date date, No_of_seats int,Address Varchar(40),Contact_No int,Status Char(2));
+insert into Reservation values(1201, '2021-06-22', 1, 'LB nagar', 98765, 'R');
+insert into Reservation values(1202, '2021-06-25', 2, 'Jubllie Hills', 87654, 'R');
+select * from Reservation;
+show tables;
