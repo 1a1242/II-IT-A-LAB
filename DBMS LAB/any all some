@@ -1,0 +1,21 @@
+create database customer;
+use customer;
+create table customers(cus_id int primary key, cus_name varchar(30));
+insert into customers values(100,'Alexa');
+insert into customers values(101,'Siri');
+insert into customers values(102,'Sony');
+
+create table reservation(res_id int primary key,cus_id int,day date,foreign key(cus_id) references customers(cus_id));
+insert into reservation values(1,100,'2021-05-29');
+insert into reservation values(2,101,'2021-06-02');
+insert into reservation values(3,100,'2021-06-27');
+
+select cus_name as NAME,cus_id from customers where cus_id in(101,102);
+select cus_name,cus_id from customers where cus_id not in(101,102);
+select * from reservation where res_id between 1 and 2;
+select cus_id,cus_name from customers where cus_id in(select cus_id from reservation where cus_id>100);
+select cus_id,cus_name from customers where cus_id = any(select cus_id from reservation);
+select cus_id from customers where cus_id <> all(select cus_id from reservation);
+select cus_id from customers where cus_id = some(select cus_id from reservation);
+select * from customers;
+select * from reservation;
