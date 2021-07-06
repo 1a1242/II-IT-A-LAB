@@ -17,5 +17,8 @@ select cus_id,cus_name from customers where cus_id in(select cus_id from reserva
 select cus_id,cus_name from customers where cus_id = any(select cus_id from reservation);
 select cus_id from customers where cus_id <> all(select cus_id from reservation);
 select cus_id from customers where cus_id = some(select cus_id from reservation);
+select cus_id from customers where cus_id  < 103 union select cus_id from reservation where day='2021-06-27';
+select cus_id  from customers where cus_id < 104 and cus_id in(select cus_id from reservation where day='2021-06-27');
+
 select * from customers;
 select * from reservation;
